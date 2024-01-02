@@ -25,9 +25,13 @@ function fetchWeather(location) {
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
-                locationArea.textContent = data.name;
-                temperature.textContent = `${Math.round(data.main.temp)}°C`;
-                description.textContent = data.weather[0].description;
+                if (location == data.name) {
+                    locationArea.textContent = data.name;
+                    temperature.textContent = `${Math.round(data.main.temp)}°C`;
+                    description.textContent = data.weather[0].description;
+                } else {
+                    alert("We did not know such a city")
+                }
             })
     } catch (error) {
         console.log(error);
